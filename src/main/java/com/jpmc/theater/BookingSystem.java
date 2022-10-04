@@ -212,7 +212,9 @@ public class BookingSystem implements BookingService {
     private void scheduleShowing(Theater theater, Movie movie, int sequenceOfDay, 
                                  LocalDate showDate, LocalTime showTime) {
         Showing showing = createShowing(theater, movie, sequenceOfDay, showDate, showTime);
-        movie.addShowing(showing);
-        theater.addSchedule(showDate, showing);
+        if (showing != null) {
+            movie.addShowing(showing);
+            theater.addSchedule(showDate, showing);
+        }
     }
 }
