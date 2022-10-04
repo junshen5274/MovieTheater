@@ -87,8 +87,15 @@ public class BookingSystem implements BookingService {
         if (day < 7) {
             seventhDay = today.plusDays(7 - day);
         } else {
-            int month = today.getMonthValue() < 12 ? today.getMonthValue() + 1 : 1;
-            seventhDay = LocalDate.of(2022, month, 7);
+            int month, year;
+            if (today.getMonthValue() < 12) {
+                month = today.getMonthValue() + 1;
+                year = today.getYear();
+            } else {
+                month = 1;
+                year = today.getYear() + 1;
+            }
+            seventhDay = LocalDate.of(year, month, 7);
         }
         
         // Initialize Theaters
